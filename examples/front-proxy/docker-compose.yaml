@@ -5,6 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile-frontenvoy
+    image: envoy-front  
     volumes:
       - ./front-envoy.yaml:/etc/front-envoy.yaml
     networks:
@@ -20,6 +21,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile-service
+    image: envoy-service1
     volumes:
       - ./service-envoy.yaml:/etc/service-envoy.yaml
     networks:
@@ -35,6 +37,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile-service
+    image: envoy-service2  
     volumes:
       - ./service-envoy.yaml:/etc/service-envoy.yaml
     networks:
