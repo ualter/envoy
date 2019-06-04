@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontservice-deployment
+  labels:
+    app: frontservice
+spec:
+  selector:
+    matchLabels:
+      app: frontservice
+  template:
+    metadata:
+      labels:
+        app: frontservice
+    spec:  
+      containers:
+        - name: frontservice
+          image: my-registry:5000/envoy-front
+          volumeMounts:
+            - mountPath: "/etc"
+              name: pv-storage
+          ports:
+            - containerPort: 80    
+      volumes:
+        - name: pv-storage
+          persistentVolumeClaim:
+            claimName: pv-claim        

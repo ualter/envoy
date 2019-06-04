@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service1-deployment
+  labels:
+    app: service1
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: service1
+  template:
+    metadata:
+      labels:
+        app: service1
+    spec:  
+      containers:
+        - name: service1
+          image: my-registry:5000/envoy-service1
+          volumeMounts:
+            - mountPath: "/etc"
+              name: pv-storage
+          ports:
+            - containerPort: 80
+          env:
+            - name: SERVICE_NAME
+              value: "1"      
+      volumes:
+        - name: pv-storage
+          persistentVolumeClaim:
+            claimName: pv-claim        

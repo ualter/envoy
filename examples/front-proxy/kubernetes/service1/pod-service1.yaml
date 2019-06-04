@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-service1
+spec:
+  volumes:
+    - name: pv-storage
+      persistentVolumeClaim:
+       claimName: pv-claim
+  containers:
+    - name: service1
+      image: my-registry:5000/envoy-service1
+      volumeMounts:
+        - mountPath: "/etc"
+          name: pv-storage
