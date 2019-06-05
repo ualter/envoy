@@ -21,7 +21,9 @@ spec:
               name: pv-storage
           ports:
             - containerPort: 80    
+              name: serv
             - containerPort: 8081
+              name: admin
       volumes:
         - name: pv-storage
           persistentVolumeClaim:
