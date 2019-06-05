@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingressservices
+  annotations:
+    nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  rules:
+   - host: minikube.ujr
+     http:
+      paths:
+      - path: /service/1(/|$)(.*)
+        backend:
+          serviceName: frontservice
+          servicePort: 80
+      - path: /service/2(/|$)(.*)
+        backend:
+          serviceName: frontservice
+          servicePort: 80    
+      - path: /
+        backend:
+          serviceName: frontservice
+          servicePort: 8081    
