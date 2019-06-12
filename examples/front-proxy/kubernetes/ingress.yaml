@@ -4,21 +4,26 @@ metadata:
   name: ingressservices
   annotations:
     nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    #nginx.ingress.kubernetes.io/rewrite-target: /$1
 spec:
   rules:
    - host: minikube.ujr
      http:
       paths:
-      - path: /service/1(/|$)(.*)
+      #- path: /service(/|$)(.*)
+      - path: /service/1
         backend:
           serviceName: frontservice
           servicePort: 80
-      - path: /service/2(/|$)(.*)
+      - path: /service/2
         backend:
           serviceName: frontservice
           servicePort: 80    
-      - path: /
-        backend:
-          serviceName: frontservice
-          servicePort: 8081    
+      #- path: /service/2
+      #  backend:
+      #    serviceName: frontservice
+      #    servicePort: 80    
+      #- path: /
+      #  backend:
+      #    serviceName: frontservice
+      #    servicePort: 8081    
