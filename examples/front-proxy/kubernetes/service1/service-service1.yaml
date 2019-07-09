@@ -1,14 +1,29 @@
-apiVersion: v1
-kind: Service
-metadata:
-  name: service1
-  labels:
-    run: service1
-spec:
-  #type: NodePort
-  ports:
-  - port: 8000
-    protocol: TCP
-    targetPort: 80
-  selector:
-    run: service1
+# Just use
+
+kubectl expose deployment/service1-deployment --name=service1
+
+
+## It will generate something like this:
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  creationTimestamp: "2019-06-17T17:33:24Z"
+#  labels:
+#    app: service1
+#  name: service1
+#  namespace: default
+#  resourceVersion: "14119"
+#  selfLink: /api/v1/namespaces/default/services/service1
+#  uid: 0249adac-9126-11e9-8930-080027126e43
+#spec:
+#  clusterIP: 10.107.166.28
+#  ports:
+#  - port: 80
+#    protocol: TCP
+#    targetPort: 80
+#  selector:
+#    app: service1
+#  sessionAffinity: None
+#  type: ClusterIP
+#status:
+#  loadBalancer: {}

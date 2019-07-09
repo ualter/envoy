@@ -1,0 +1,3 @@
+# Just use the command
+
+# kubectl expose deployment/frontservice-deployment --name=frontservice

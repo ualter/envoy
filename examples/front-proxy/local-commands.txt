@@ -1,0 +1,20 @@
+
+cat  ~/Developer/minikube-minishift/my-registry/certs/domain.crt
+
+sudo ssh-keygen -R 192.168.99.100
+
+
+sudo scp -i $(minikube ssh-key) ~/Developer/envoy/examples/front-proxy/front-envoy.yaml docker@$(minikube ip):/Users/ualter
+sudo scp -i $(minikube ssh-key) ~/Developer/envoy/examples/front-proxy/service-envoy.yaml docker@$(minikube ip):/Users/ualter
+
+minikube ssh
+sudo cp /Users/ualter/*yaml /etc
+
+sudo mkdir -p /etc/docker/certs.d/my-registry:5000/
+sudo vi /etc/docker/certs.d/my-registry:5000/ca.crt
+
+sudo vi /etc/ssl/certs/ca-certificates.crt
+G (enf od file)
+
+
+
